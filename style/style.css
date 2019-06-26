@@ -1,0 +1,163 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: #333;
+  color: white;
+}
+
+h3 {
+  color: white;
+  font-size: 36px;
+  text-align: center;
+  font-weight: 800;
+}
+
+
+#app {
+  background-color: #222;
+  width: 90%;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius:  10px;
+  vertical-align: center;
+}
+
+.txt-username {
+  width: 80%;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: 100;
+  margin-bottom: 25px;
+  border: 1px solid #333;
+  background: #222;
+  color: white;
+  border-radius: 50px;
+}
+
+.txt-username:focus {
+  outline: none;
+  border: 1px solid #d31a20;
+}
+
+.center-all {
+  text-align: center;
+}
+
+.btn-ingresar {
+  margin: 10px;
+  width: auto;
+  padding: 10px 30px;
+  color: #333;
+  background: #d31a20;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid #d31a20;
+  transition: 0.3s;
+  font-weight: 100;
+}
+
+.btn-ingresar:hover {
+  color: white;
+  background: transparent;
+  border: 1px solid white;
+  transition: 0.3s;
+}
+
+.btn-invi {
+  margin: 10px;
+  width: auto;
+  padding: 10px 30px;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid white;
+  transition: 0.3s;
+  font-weight: 100;
+}
+
+.btn-invi:hover {
+  color: #333;
+  background: #d31a20;
+  border: 1px solid #d31a20;
+  transition: 0.3s;
+}
+
+#chatbox {
+  padding: 20px 0px;
+  margin: 0px auto;
+  background: #222;
+  height: 400px;
+  max-height: 400px;
+  width: 100%;
+  max-width: 100%;
+  overflow-y: scroll;
+}
+
+
+.txt-chat {
+  width: 80%;
+  padding: 10px 0px;
+  border: 1px solid #333;
+  background: #222;
+  color: white;
+  border-radius: 20px;
+  text-align: center;
+  margin: 30px 0px 0px 0px;
+}
+
+.txt-chat:focus {
+  outline: none;
+  border: 1px solid #d31a20;
+}
+
+
+.btn-send {
+  cursor: pointer;
+  background: #222;
+  color: #333;
+  padding: 10px;
+  width: 15%;
+  margin-left: 5px;
+  border-radius: 20px;
+  border: 1px solid #333;
+}
+
+.btn-send:hover {
+  color: #d31a20;
+  border: 1px solid #d31a20;
+}
+
+.btn-send:focus {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d31a20;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #91121a;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 25px;
+  font-size: 11px;
+  color: #939191;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}

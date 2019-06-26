@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zegnio Chat</title>
+  <link rel="stylesheet" href="/style/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha256-BtbhCIbtfeVWGsqxk1vOHEYXS6qcvQvLMZqjtpWUEx8=" crossorigin="anonymous" />
+</head>
+<body>
+
+  <div id="app">
+    <div v-if="state == 0">
+      <h3>Ingresa tu usuario</h3>
+      <form class="center-all" @submit.prevent="setUsername">
+        <input class="txt-username" type="text" placeholder="Nombre de usuario..." v-model:value="username" /></br>
+        <button class="btn-ingresar" type="submit" value="Ingresar">Ingresar <i class="fas fa-check"></i></button>
+        <button class="btn-invi" @click="continueWithoutUsername">Únete como invitado <i class="fas fa-user"></i></button>
+      </form>
+
+    </div>
+    <div v-if="state == 1">
+      <ul id="chatbox">
+        <li v-for="message in messages">
+          <b>{{ message.user }}:</b> {{ message.message }}
+        </li>
+      </ul>
+      <form class="center-all" @submit.prevent="sendMessage">
+        <input class="txt-chat" type="text" placeholder="Mensaje..." v-model:value="message" />
+        <button class="btn-send" type="submit" value="Enviar"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+  <div class="footer">
+    <i class="fas fa-code"></i> con <i class="fas fa-heart"></i> por Josué Ruiz
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var socket = null;
+    var app = new Vue({
+      // State 0: select username
+      // State 1: chat application
+      el: '#app',
+      data: {
+        messages: [],
+        message: '',
+        username: '',
+        state: 0
+      },
+      methods: {
+        sendMessage: function () {
+          socket.emit('message', this.message);
+          this.message = '';
+        },
+        setUsername: function () {
+          socket.emit('join', this.username);
+          this.username = '';
+          this.state = 1;
+        },
+        continueWithoutUsername: function () {
+          socket.emit('join', null);
+          this.state = 1;
+        }
+      },
+      created: function () {
+        socket = io();
+      },
+      mounted: function () {
+        socket.on('message', function (message) {
+          app.messages.push(message);
+          // this needs to be done AFTER vue updates the page!!
+          app.$nextTick(function () {
+            var messageBox = document.getElementById('chatbox');
+            messageBox.scrollTop = messageBox.scrollHeight;
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
